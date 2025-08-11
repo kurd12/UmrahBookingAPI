@@ -1,6 +1,8 @@
 ﻿// Faili: Data/ApplicationDbContext.cs
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema; // ئەم دێڕە زیاد بکە لە سەرەوەی فایلەکە
+[Table("Representatives")] // ئەم دێڕە زیاد بکە ڕێک لە سەرووی کلاسەکە
 
 public class ApplicationDbContext : DbContext
 {
@@ -8,8 +10,9 @@ public class ApplicationDbContext : DbContext
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
     }
-    public DbSet<CampaignLeader> CampaignLeaders { get; set; } 
     public DbSet<Representative> Representatives { get; set; }
+
+    public DbSet<CampaignLeader> CampaignLeaders { get; set; } 
     public DbSet<Payment> Payments { get; set; } 
     public DbSet<User> Users { get; set; }
      public DbSet<Trip> Trips { get; set; }
