@@ -27,12 +27,18 @@ public class RepresentativesController : ControllerBase
         }
         catch (Exception ex)
         {
-            // ئەگەر هەر هەڵەیەک ڕوویدا، دەیگرێت
-            Console.WriteLine("!!!!!!!!!! AN ERROR OCCURRED !!!!!!!!!!");
-            Console.WriteLine(ex.ToString()); // هەموو وردەکارییەکانی هەڵەکە لە لۆگ چاپ دەکات
 
-            // وەڵامێکی 500 دەگەڕێنێتەوە لەگەڵ پەیامی هەڵەکە
+            Console.WriteLine("###########################################");
+            Console.WriteLine(">>> REPRESENTATIVES CONTROLLER CRASHED <<<");
+            Console.WriteLine("###########################################");
+            Console.WriteLine(ex.ToString());
+
             return StatusCode(500, $"Internal server error: {ex.Message}");
+        
+
+
+        // وەڵامێکی 500 دەگەڕێنێتەوە لەگەڵ پەیامی هەڵەکە
+        return StatusCode(500, $"Internal server error: {ex.Message}");
         }
     }
 
