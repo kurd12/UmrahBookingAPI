@@ -15,10 +15,25 @@ public class RepresentativesController : ControllerBase
         _context = context;
     }
 
-    // GET: api/Representatives
+    // کۆدی نوێ و باشترکراو
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Representative>>> GetRepresentatives()
     {
-        return await _context.Representatives.ToListAsync();
+        try
+        {
+            // هەوڵدەدات لیستی نوێنەرەکان بهێنێت
+            var representatives = await _context.Representatives.ToListAsync();
+            return Ok(representatives); // ئەگەر سەرکەوتوو بوو، دەیانگەڕێنێتەوە
+        }
+        catch (Exception ex)
+        {
+            // ئەگەر هەر هەڵەیەک ڕوویدا، دەیگرێت
+            Console.WriteLine("!!!!!!!!!! AN ERROR OCCURRED !!!!!!!!!!");
+            Console.WriteLine(ex.ToString()); // هەموو وردەکارییەکانی هەڵەکە لە لۆگ چاپ دەکات
+
+            // وەڵامێکی 500 دەگەڕێنێتەوە لەگەڵ پەیامی هەڵەکە
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
     }
+
 }
