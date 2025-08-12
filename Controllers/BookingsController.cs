@@ -36,7 +36,7 @@ public class BookingsController : ControllerBase
             TripID = bookingDto.TripID,
             RepID = bookingDto.RepID,
             LeaderID = bookingDto.LeaderID,
-            BookingStatus = BookingStatus.Pending // <-- ڕاستکراوەتەوە
+            BookingStatus = BookingStatus.Pending 
         };
 
         _context.Bookings.Add(newBooking);
