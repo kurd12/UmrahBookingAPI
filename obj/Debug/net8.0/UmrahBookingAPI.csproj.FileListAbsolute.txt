@@ -37,7 +37,6 @@ C:\Users\TS\Desktop\MyAppOmra\UmrahBookingAPI\UmrahBookingAPI\obj\Debug\net8.0\s
 C:\Users\TS\Desktop\MyAppOmra\UmrahBookingAPI\UmrahBookingAPI\obj\Debug\net8.0\staticwebassets.build.json.cache
 C:\Users\TS\Desktop\MyAppOmra\UmrahBookingAPI\UmrahBookingAPI\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\TS\Desktop\MyAppOmra\UmrahBookingAPI\UmrahBookingAPI\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Users\TS\Desktop\MyAppOmra\UmrahBookingAPI\UmrahBookingAPI\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\TS\Desktop\MyAppOmra\UmrahBookingAPI\UmrahBookingAPI\obj\Debug\net8.0\UmrahBoo.BF14DA2D.Up2Date
 C:\Users\TS\Desktop\MyAppOmra\UmrahBookingAPI\UmrahBookingAPI\obj\Debug\net8.0\UmrahBookingAPI.dll
 C:\Users\TS\Desktop\MyAppOmra\UmrahBookingAPI\UmrahBookingAPI\obj\Debug\net8.0\refint\UmrahBookingAPI.dll

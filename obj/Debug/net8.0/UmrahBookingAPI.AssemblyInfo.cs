@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UmrahBookingAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eaddc9f8c53b8f4125ae872ff4c12e0723b4d787")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5fb697dc0dbcd4d5855d40d4268f7c1db8812620")]
 [assembly: System.Reflection.AssemblyProductAttribute("UmrahBookingAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UmrahBookingAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

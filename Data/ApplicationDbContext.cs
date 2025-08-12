@@ -17,39 +17,43 @@ public class ApplicationDbContext : DbContext
     // Faili: Data/ApplicationDbContext.cs
     // ... (کۆدی تر)
 
+    // Faili: Data/ApplicationDbContext.cs
+    // ... (کۆدی تر)
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.Entity<Booking>(entity =>
         {
-            // ================== چارەسەری ڕاست لێرەدایە ==================
+            // ================== چارەسەری زۆر سادە لێرەدایە ==================
             // پەیوەندی لەگەڵ User
             entity.HasOne(b => b.User)
-                  .WithMany(u => u.Bookings) // <-- گەڕایەوە بۆ WithMany
+                  .WithMany() // <-- ناوەڕۆکی کەوانەکە لابرا
                   .HasForeignKey(b => b.UserID)
                   .IsRequired();
 
             // پەیوەندی لەگەڵ Trip
             entity.HasOne(b => b.Trip)
-                  .WithMany(t => t.Bookings) // <-- گەڕایەوە بۆ WithMany
+                  .WithMany() // <-- ناوەڕۆکی کەوانەکە لابرا
                   .HasForeignKey(b => b.TripID)
                   .IsRequired();
 
             // پەیوەندی لەگەڵ Representative
             entity.HasOne(b => b.Representative)
-                  .WithMany(r => r.Bookings) // <-- گەڕایەوە بۆ WithMany
+                  .WithMany() // <-- ناوەڕۆکی کەوانەکە لابرا
                   .HasForeignKey(b => b.RepID)
                   .IsRequired(false);
 
             // پەیوەندی لەگەڵ CampaignLeader
             entity.HasOne(b => b.CampaignLeader)
-                  .WithMany(cl => cl.Bookings) // <-- گەڕایەوە بۆ WithMany
+                  .WithMany() // <-- ناوەڕۆکی کەوانەکە لابرا
                   .HasForeignKey(b => b.LeaderID)
                   .IsRequired(false);
             // =======================================================
         });
     }
+    // ... (کۆدی تر)
     // ... (کۆدی تر)
     // dotnet build
 
