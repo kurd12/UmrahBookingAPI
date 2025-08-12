@@ -1,6 +1,7 @@
 ﻿// Faili: Controllers/AdminController.cs
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -20,7 +21,8 @@ public class AdminController : ControllerBase
         var booking = await _context.Bookings.FindAsync(bookingId);
         if (booking == null) return NotFound();
 
-        booking.BookingStatus = BookingStatus.پەسەندکراوە;
+        // بەکارهێنانی بەهای ئینگلیزی لە enum
+        booking.BookingStatus = BookingStatus.Approved;
         await _context.SaveChangesAsync();
         return Ok(new { Message = "Booking approved." });
     }
@@ -32,7 +34,8 @@ public class AdminController : ControllerBase
         var booking = await _context.Bookings.FindAsync(bookingId);
         if (booking == null) return NotFound();
 
-        booking.BookingStatus = BookingStatus.ڕەتکراوەتەوە;
+        // بەکارهێنانی بەهای ئینگلیزی لە enum
+        booking.BookingStatus = BookingStatus.Rejected;
         await _context.SaveChangesAsync();
         return Ok(new { Message = "Booking rejected." });
     }
