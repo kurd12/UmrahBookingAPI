@@ -13,5 +13,5 @@ public class BookingDetailsDto
     public DateTime BookingDate { get; set; }
     public decimal TotalPaid { get; set; }
     public decimal AmountDue { get; set; }
-    public List<Payment>? Payments { get; set; }
+    public List<PaymentDto>? Payments { get; set; }
 }

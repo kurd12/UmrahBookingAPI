@@ -57,15 +57,15 @@ public class BookingsController : ControllerBase
             .Select(b => new BookingDetailsDto
             {
                 BookingID = b.BookingID,
-                TripType = b.Trip.TripType.ToString(), // <-- ڕاستکراوەتەوە
+                TripType = b.Trip.TripType.ToString(),
                 TripPrice = b.Trip.Price,
                 RepresentativeName = b.Representative.RepName,
                 CampaignLeaderName = b.CampaignLeader != null ? b.CampaignLeader.LeaderName : "دیاری نەکراوە",
-                BookingStatus = b.BookingStatus.ToString(), // <-- ڕاستکراوەتەوە
+                BookingStatus = b.BookingStatus.ToString(),
                 BookingDate = b.BookingDate,
                 TotalPaid = _context.Payments.Where(p => p.BookingID == b.BookingID).Sum(p => (decimal?)p.AmountPaid) ?? 0,
                 AmountDue = b.Trip.Price - (_context.Payments.Where(p => p.BookingID == b.BookingID).Sum(p => (decimal?)p.AmountPaid) ?? 0),
-                Payments = _context.Payments.Where(p => p.BookingID == b.BookingID).Select(p => new Payment
+                Payments = _context.Payments.Where(p => p.BookingID == b.BookingID).Select(p => new PaymentDto
                 {
                     AmountPaid = p.AmountPaid,
                     PaymentDate = p.PaymentDate,
@@ -81,4 +81,5 @@ public class BookingsController : ControllerBase
 
         return Ok(bookings);
     }
+
 }
