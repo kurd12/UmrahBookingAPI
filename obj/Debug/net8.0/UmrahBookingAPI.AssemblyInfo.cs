@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UmrahBookingAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e312bddf472f5d61a68c70c182841e4153346ddd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f5fad40298612e6fab6919e20a775c7d9d91756b")]
 [assembly: System.Reflection.AssemblyProductAttribute("UmrahBookingAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UmrahBookingAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

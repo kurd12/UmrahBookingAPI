@@ -1,28 +1,28 @@
-﻿// Faili: Models/DTOs/BookingRequestDto.cs
+﻿// Faili: DTOs/BookingRequestDto.cs
 using System.ComponentModel.DataAnnotations;
 
 public class BookingRequestDto
 {
-    public int? LeaderID { get; set; } // <-- زیادکراوە
-
-    [Required]
+    [Required] // UserID هەمیشە پێویستە
     public int UserID { get; set; }
 
-    [Required]
+    [Required] // TripID هەمیشە پێویستە
     public int TripID { get; set; }
 
-    [Required]
-    public int RepID { get; set; }
+    // ================== گۆڕانکارییەکان لێرەدایە ==================
 
-    // زانیارییەکانی بەکارهێنەر کە لە کاتی حجزکردندا نوێ دەکرێنەوە
-    [Required]
-    public string? FullName { get; set; }
+    // RepID ئارەزوومەندانەیە
+    public int? RepID { get; set; } // <-- ؟ زیادکرا و [Required] لابرا
 
-    [Required]
-    public string? Address { get; set; }
+    // ئەم زانیاریانە لەوانەیە دواتر زیاد بکرێن، بۆیە پێویست نین لە کاتی دروستکردندا
+    public string? FullName { get; set; }  // <-- [Required] لابرا
+    public string? Address { get; set; }   // <-- [Required] لابرا
 
-    // لە پرۆژەی ڕاستەقینەدا، ئەمە دەبێت IFormFile بێت بۆ بارکردنی فایل
-    // بەڵام بۆ سادەیی، ئێستا وەک string دایدەنێین
+    public int? LeaderID { get; set; }
     public string? PersonalPhotoURL { get; set; }
     public string? PassportScanURL { get; set; }
+
+    // Notes زیاد دەکەین چونکە لە MAUIـیەوە دەینێرین
+    public string? Notes { get; set; }
+    // ==========================================================
 }

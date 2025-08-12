@@ -3,14 +3,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-// پێناسەی Enum بۆ دۆخی حجز بە ئینگلیزی
-public enum BookingStatus
-{
-    Pending,    // داواکراوە
-    Approved,   // پەسەندکراوە
-    Rejected,   // ڕەتکراوەتەوە
-    Completed   // تەواوبووە
-}
+public enum BookingStatus { Pending, Approved, Rejected, Completed }
 
 public class Booking
 {
@@ -25,8 +18,7 @@ public class Booking
     public int TripID { get; set; }
     public Trip? Trip { get; set; }
 
-    [Required]
-    public int RepID { get; set; }
+    public int? RepID { get; set; } // ئارەزوومەندانە
     public Representative? Representative { get; set; }
 
     public int? LeaderID { get; set; }
@@ -36,4 +28,8 @@ public class Booking
     public BookingStatus BookingStatus { get; set; } = BookingStatus.Pending;
 
     public DateTime BookingDate { get; set; } = DateTime.UtcNow;
+
+    // ================== زیادکرا ==================
+    public string? Notes { get; set; }
+    // ============================================
 }
