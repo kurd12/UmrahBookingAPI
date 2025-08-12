@@ -1,6 +1,7 @@
 ﻿// Faili: Models/Booking.cs
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+[Table("Bookings")]
 
 public class Booking
 {

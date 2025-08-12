@@ -11,7 +11,7 @@ public class ApplicationDbContext : DbContext
     {
     }
     public DbSet<Representative> Representatives { get; set; }
-
+    public DbSet<TripItinerary> TripItineraries { get; set; }
     public DbSet<CampaignLeader> CampaignLeaders { get; set; } 
     public DbSet<Payment> Payments { get; set; } 
     public DbSet<User> Users { get; set; }

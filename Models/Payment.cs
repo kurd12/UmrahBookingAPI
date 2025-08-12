@@ -1,6 +1,7 @@
 ﻿// Faili: Models/Payment.cs
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+[Table("Payments")]
 
 public class Payment
 {

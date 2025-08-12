@@ -1,6 +1,7 @@
 ﻿// Faili: Models/Trip.cs
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+[Table("Trips")]
 
 public class Trip
 {

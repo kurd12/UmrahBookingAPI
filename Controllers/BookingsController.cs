@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
+
 [Route("api/[controller]")]
 [ApiController]
 public class BookingsController : ControllerBase
@@ -34,6 +35,7 @@ public class BookingsController : ControllerBase
             RepID = bookingDto.RepID,
             LeaderID = bookingDto.LeaderID,
             BookingStatus = Enum.Parse<BookingStatus>("Pending")
+            // ئەمە دروستە چونکە بنکەی دراوە ENUMـی stringـە
         };
 
         _context.Bookings.Add(newBooking);
@@ -80,7 +82,6 @@ public class BookingsController : ControllerBase
     }
 
     // GET: api/Bookings/All
-    // ئەم فانکشنە نوێیە کە بۆ بەڕێوەبەرە
     [HttpGet("All")]
     public async Task<ActionResult<IEnumerable<BookingDetailsDto>>> GetAllBookings()
     {

@@ -1,5 +1,7 @@
 ﻿// Faili: Models/User.cs
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+[Table("Users")]
 
 public class User
 {
