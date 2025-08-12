@@ -34,11 +34,11 @@ public class BookingsController : ControllerBase
         {
             UserID = bookingDto.UserID,
             TripID = bookingDto.TripID,
-            RepID = bookingDto.RepID,
-            LeaderID = bookingDto.LeaderID,
-            BookingStatus = BookingStatus.Pending 
+            RepID = bookingDto.RepID, // <-- ئێستا هەردووکیان RepIDـن
+            Notes = bookingDto.Notes,
+            BookingDate = DateTime.UtcNow,
+            BookingStatus = BookingStatus.Pending
         };
-
         _context.Bookings.Add(newBooking);
         await _context.SaveChangesAsync();
 
