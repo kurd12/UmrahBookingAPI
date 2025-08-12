@@ -11,6 +11,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Representative> Representatives { get; set; }
     public DbSet<CampaignLeader> CampaignLeaders { get; set; }
     public DbSet<Payment> Payments { get; set; }
+    public DbSet<TripItinerary> TripItineraries { get; set; }
 
     // ================== چارەسەری یەکلاکەرەوە لێرەدایە ==================
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -45,5 +46,7 @@ public class ApplicationDbContext : DbContext
                   .IsRequired(false); // LeaderID ئارەزوومەندانەیە
         });
     }
+   // dotnet build
+
     // =================================================================
 }
