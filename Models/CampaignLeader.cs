@@ -1,6 +1,7 @@
-﻿// Faili: Models/CampaignLeader.cs
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
+[Table("Companies")]
 public class CampaignLeader
 {
     [Key]
