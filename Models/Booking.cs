@@ -18,7 +18,7 @@ public class Booking
     [Required]
     public int RepID { get; set; }
 
-    public BookingStatus BookingStatus { get; set; } = BookingStatus.داواکراوە;
+    public BookingStatus BookingStatus { get; set; }
 
     public DateTime BookingDate { get; set; } = DateTime.UtcNow;
 
@@ -38,7 +38,8 @@ public class Booking
 
 public enum BookingStatus
 {
-    داواکراوە,    // Requested
-    پەسەندکراوە, // Approved
-    ڕەتکراوەتەوە // Rejected
+    Pending,    // داواکراوە
+    Approved,   // پەسەندکراوە
+    Rejected,   // ڕەتکراوەتەوە
+    Completed   // تەواوبووە
 }

@@ -7,6 +7,7 @@ public class Trip
 {
     [Key]
     public int TripID { get; set; }
+    
 
     // Enum 'وشکانی' و 'ئاسمانی' لە بنکەی دراوە بە ژمارە 0 و 1 هەڵدەگیرێن
     public TripType TripType { get; set; }
@@ -24,10 +25,14 @@ public class Trip
 
     public bool IsAvailable { get; set; }
 }
-
-// پێناسەکردنی Enum بۆ جۆری گەشت
 public enum TripType
-{
-    وشکانی, // 0
-    ئاسمانی  // 1
-}
+    {
+        Air,    // گەشتی ئاسمانی
+        Land    // گەشتی وشکانی
+    }
+// پێناسەکردنی Enum بۆ جۆری گەشت
+//public enum TripType
+//{
+//    وشکانی, // 0
+//    ئاسمانی  // 1
+//}
