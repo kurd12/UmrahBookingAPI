@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 [Table("Companies")]
 public class CampaignLeader
 {
+    public virtual ICollection<Booking>? Bookings { get; set; }
+
     [Key]
     public int LeaderID { get; set; }
     public string? LeaderName { get; set; }

@@ -11,6 +11,8 @@ public enum TripType
 
 public class Trip
 {
+    public virtual ICollection<Booking>? Bookings { get; set; }
+
     [Key]
     public int TripID { get; set; }
 

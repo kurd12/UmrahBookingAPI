@@ -14,39 +14,44 @@ public class ApplicationDbContext : DbContext
     public DbSet<TripItinerary> TripItineraries { get; set; }
 
     // ================== چارەسەری یەکلاکەرەوە لێرەدایە ==================
+    // Faili: Data/ApplicationDbContext.cs
+    // ... (کۆدی تر)
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-        // پێناسەکردنی ڕوونی پەیوەندییەکانی خشتەی Bookings
         modelBuilder.Entity<Booking>(entity =>
         {
+            // ================== چارەسەری ڕاست لێرەدایە ==================
             // پەیوەندی لەگەڵ User
             entity.HasOne(b => b.User)
-                  .WithMany() // وا دابنێ User چەندین Bookingـی هەیە
+                  .WithMany(u => u.Bookings) // <-- گەڕایەوە بۆ WithMany
                   .HasForeignKey(b => b.UserID)
-                  .IsRequired(); // UserID ناچارییە
+                  .IsRequired();
 
             // پەیوەندی لەگەڵ Trip
             entity.HasOne(b => b.Trip)
-                  .WithMany() // وا دابنێ Trip چەندین Bookingـی هەیە
+                  .WithMany(t => t.Bookings) // <-- گەڕایەوە بۆ WithMany
                   .HasForeignKey(b => b.TripID)
-                  .IsRequired(); // TripID ناچارییە
+                  .IsRequired();
 
             // پەیوەندی لەگەڵ Representative
             entity.HasOne(b => b.Representative)
-                  .WithMany() // وا دابنێ Representative چەندین Bookingـی هەیە
+                  .WithMany(r => r.Bookings) // <-- گەڕایەوە بۆ WithMany
                   .HasForeignKey(b => b.RepID)
-                  .IsRequired(false); // RepID ئارەزوومەندانەیە
+                  .IsRequired(false);
 
             // پەیوەندی لەگەڵ CampaignLeader
             entity.HasOne(b => b.CampaignLeader)
-                  .WithMany() // وا دابنێ CampaignLeader چەندین Bookingـی هەیە
+                  .WithMany(cl => cl.Bookings) // <-- گەڕایەوە بۆ WithMany
                   .HasForeignKey(b => b.LeaderID)
-                  .IsRequired(false); // LeaderID ئارەزوومەندانەیە
+                  .IsRequired(false);
+            // =======================================================
         });
     }
-   // dotnet build
+    // ... (کۆدی تر)
+    // dotnet build
 
     // =================================================================
 }

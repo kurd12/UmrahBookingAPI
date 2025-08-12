@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 public class Representative
 {
+    public virtual ICollection<Booking>? Bookings { get; set; }
+
     [Key]
     public int RepID { get; set; }
     public string? RepName { get; set; }
