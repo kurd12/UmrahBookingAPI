@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿// Faili: Controllers/BookingsController.cs
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
+using System.Linq;
+using System.Threading.Tasks;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -34,7 +36,7 @@ public class BookingsController : ControllerBase
             TripID = bookingDto.TripID,
             RepID = bookingDto.RepID,
             LeaderID = bookingDto.LeaderID,
-            BookingStatus = Enum.Parse<BookingStatus>("Pending")
+            BookingStatus = BookingStatus.Pending // <-- ڕاستکراوەتەوە
         };
 
         _context.Bookings.Add(newBooking);
@@ -55,15 +57,15 @@ public class BookingsController : ControllerBase
             .Select(b => new BookingDetailsDto
             {
                 BookingID = b.BookingID,
-                TripType = b.Trip.TripType.ToString(), // <-- .ToString() زیادکرا
+                TripType = b.Trip.TripType.ToString(), // <-- ڕاستکراوەتەوە
                 TripPrice = b.Trip.Price,
                 RepresentativeName = b.Representative.RepName,
                 CampaignLeaderName = b.CampaignLeader != null ? b.CampaignLeader.LeaderName : "دیاری نەکراوە",
-                BookingStatus = b.BookingStatus.ToString(), // <-- .ToString() زیادکرا
+                BookingStatus = b.BookingStatus.ToString(), // <-- ڕاستکراوەتەوە
                 BookingDate = b.BookingDate,
                 TotalPaid = _context.Payments.Where(p => p.BookingID == b.BookingID).Sum(p => (decimal?)p.AmountPaid) ?? 0,
                 AmountDue = b.Trip.Price - (_context.Payments.Where(p => p.BookingID == b.BookingID).Sum(p => (decimal?)p.AmountPaid) ?? 0),
-                Payments = _context.Payments.Where(p => p.BookingID == b.BookingID).Select(p => new PaymentDto
+                Payments = _context.Payments.Where(p => p.BookingID == b.BookingID).Select(p => new Payment
                 {
                     AmountPaid = p.AmountPaid,
                     PaymentDate = p.PaymentDate,
@@ -75,42 +77,6 @@ public class BookingsController : ControllerBase
         if (!bookings.Any())
         {
             return NotFound("No bookings found for this user.");
-        }
-
-        return Ok(bookings);
-    }
-
-    // GET: api/Bookings/All
-    [HttpGet("All")]
-    public async Task<ActionResult<IEnumerable<BookingDetailsDto>>> GetAllBookings()
-    {
-        var bookings = await _context.Bookings
-            .Include(b => b.Trip)
-            .Include(b => b.Representative)
-            .Include(b => b.CampaignLeader)
-            .Select(b => new BookingDetailsDto
-            {
-                BookingID = b.BookingID,
-                TripType = b.Trip.TripType.ToString(), // <-- .ToString() زیادکرا
-                TripPrice = b.Trip.Price,
-                RepresentativeName = b.Representative.RepName,
-                CampaignLeaderName = b.CampaignLeader != null ? b.CampaignLeader.LeaderName : "دیاری نەکراوە",
-                BookingStatus = b.BookingStatus.ToString(), // <-- .ToString() زیادکرا
-                BookingDate = b.BookingDate,
-                TotalPaid = _context.Payments.Where(p => p.BookingID == b.BookingID).Sum(p => (decimal?)p.AmountPaid) ?? 0,
-                AmountDue = b.Trip.Price - (_context.Payments.Where(p => p.BookingID == b.BookingID).Sum(p => (decimal?)p.AmountPaid) ?? 0),
-                Payments = _context.Payments.Where(p => p.BookingID == b.BookingID).Select(p => new PaymentDto
-                {
-                    AmountPaid = p.AmountPaid,
-                    PaymentDate = p.PaymentDate,
-                    PaymentMethod = p.PaymentMethod
-                }).ToList()
-            })
-            .ToListAsync();
-
-        if (!bookings.Any())
-        {
-            return NotFound("No bookings found in the system.");
         }
 
         return Ok(bookings);
