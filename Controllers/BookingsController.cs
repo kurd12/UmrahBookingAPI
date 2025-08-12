@@ -17,38 +17,42 @@ public class BookingsController : ControllerBase
 
     // POST: api/Bookings
     [HttpPost]
-    public async Task<IActionResult> CreateBooking([FromBody] BookingRequestDto bookingDto)
+    public async Task<ActionResult> CreateBooking([FromBody] BookingRequestDto bookingDto)
     {
-        if (!ModelState.IsValid) return BadRequest(ModelState);
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
 
-        var user = await _context.Users.FindAsync(bookingDto.UserID);
-        if (user == null) return NotFound(new { Message = "User not found." });
+        // پشکنینی ئەوەی کە ئایا بەکارهێنەر و گەشت بوونیان هەیە
+        var userExists = await _context.Users.AnyAsync(u => u.UserID == bookingDto.UserID);
+        if (!userExists) return NotFound(new { Message = "User not found." });
 
-        user.FullName = bookingDto.FullName;
-        user.Address = bookingDto.Address;
-        user.PersonalPhotoURL = bookingDto.PersonalPhotoURL;
-        user.PassportScanURL = bookingDto.PassportScanURL;
-        _context.Users.Update(user);
+        var tripExists = await _context.Trips.AnyAsync(t => t.TripID == bookingDto.TripID);
+        if (!tripExists) return NotFound(new { Message = "Trip not found." });
 
+        // دروستکردنی ئۆبجێکتی Bookingـی نوێ
         var newBooking = new Booking
         {
             UserID = bookingDto.UserID,
             TripID = bookingDto.TripID,
-            RepID = bookingDto.RepID, // <-- ئێستا هەردووکیان RepIDـن
-            Notes = bookingDto.Notes,
+            RepID = bookingDto.RepID,
+            Notes = bookingDto.Notes, // دڵنیابە کە Notes لە مۆدێلی Bookingـدا هەیە
             BookingDate = DateTime.UtcNow,
             BookingStatus = BookingStatus.Pending
         };
+
         _context.Bookings.Add(newBooking);
         await _context.SaveChangesAsync();
 
+        // وەڵامدانەوە بە پەیامێکی سەرکەوتوو
         return Ok(new { Message = "Booking created successfully!", BookingId = newBooking.BookingID });
     }
-
     // GET: api/Bookings/User/{userId}
     [HttpGet("User/{userId}")]
     public async Task<ActionResult<IEnumerable<BookingDetailsDto>>> GetUserBookings(int userId)
     {
+
         var bookings = await _context.Bookings
             .Include(b => b.Trip)
             .Include(b => b.Representative)

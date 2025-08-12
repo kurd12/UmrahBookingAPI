@@ -9,15 +9,17 @@ public class BookingRequestDto
     [Required]
     public int TripID { get; set; }
 
-    // تەنها یەک property بۆ نوێنەر دەهێڵینەوە
-    public int? RepID { get; set; } // ئارەزوومەندانەیە
+    public int? RepID { get; set; } // ئارەزوومەندانە
 
     public string? Notes { get; set; }
 
-    // ئەم خانانەی تر ئارەزوومەندانەن و دەتوانن بمێننەوە
+    // ================== چارەسەرەکە لێرەدایە ==================
+    // ئەم خانانە چیتر ناچاری نین لە کاتی دروستکردنی حجزدا
+    public string? FullName { get; set; }  // <-- [Required] لابرا
+    public string? Address { get; set; }   // <-- [Required] لابرا
+    // =======================================================
+
     public int? LeaderID { get; set; }
-    public string? FullName { get; set; }
-    public string? Address { get; set; }
     public string? PersonalPhotoURL { get; set; }
     public string? PassportScanURL { get; set; }
 }
