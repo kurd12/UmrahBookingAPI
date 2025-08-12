@@ -35,7 +35,6 @@ public class BookingsController : ControllerBase
             RepID = bookingDto.RepID,
             LeaderID = bookingDto.LeaderID,
             BookingStatus = Enum.Parse<BookingStatus>("Pending")
-            // ئەمە دروستە چونکە بنکەی دراوە ENUMـی stringـە
         };
 
         _context.Bookings.Add(newBooking);
